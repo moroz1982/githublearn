@@ -269,7 +269,7 @@ footer {
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     header {
-        padding: 10px 0;
+        padding: 0px 0;
     }
 
     .logo {
