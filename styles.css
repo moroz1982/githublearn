@@ -1,302 +1,183 @@
-/* Общие стили */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-    font-family: 'Poppins', sans-serif; /* Добавьте Google Font для более современного шрифта */
-    line-height: 1.6;
-    color: #333;
     background-color: #f9f9f9;
-    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Шапка сайта */
-header {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    color: #fff;
-    padding: 15px 0;
+.navbar {
+    position: fixed;
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    z-index: 1000;
 }
 
-/* Логотип */
 .logo {
-    font-size: 28px;
-    color: #fff;
-    text-decoration: none;
+    font-size: 1.8rem;
     font-weight: bold;
-    letter-spacing: 2px;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-/* Навигационное меню */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center; /* Центрируем элементы по горизонтали */
-    gap: 20px; /* Добавляем отступ между пунктами меню */
-    transition: all 0.3s ease;
-}
-
-nav ul li {
-    position: relative; /* Для создания эффекта подчеркивания */
-}
-
-nav ul li a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    padding: 10px 15px; /* Добавляем немного внутреннего отступа */
-    border-radius: 5px; /* Скругляем углы */
+    transition: color 0.3s;
 }
 
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transform: scaleX(0); /* Эффект появления линии */
-    transition: transform 0.3s ease;
-}
-
-nav ul li a:hover::after {
-    transform: scaleX(1); /* Активируем эффект при наведении */
-}
-
-nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.1); /* Небольшой фон при наведении */
-    border-radius: 5px;
-}
-
-/* Телефон */
-.phone-number {
-    font-size: 18px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.phone-number:hover {
-    color: #ff7e5f;
-}
-
-#hero {
-    background: url('images/hero.jpg') no-repeat center center/cover;
-    height: 500px;
+.nav-links {
     display: flex;
-    justify-content: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
     align-items: center;
-    color: #fff;
+    justify-content: center;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    padding-top: 80px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-#hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-}
-
-#hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-    animation: fadeInUp 1s ease-in-out;
-}
-
-#hero p {
-    font-size: 20px;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-    animation: fadeInUp 1.5s ease-in-out;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #ff7e5f;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
-    animation: fadeInUp 2s ease-in-out;
-}
-
-.btn:hover {
-    background: #feb47b;
-    transform: scale(1.05);
 }
 
 .categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    padding: 4rem 2rem;
+    background: white;
 }
 
-.category-item {
-    text-align: center;
-    background: #fff;
-    padding: 20px;
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-card {
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
     overflow: hidden;
-}
-
-.category-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.category-item:hover img {
-    transform: scale(1.1);
-}
-
-.service-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.service-item {
-    text-align: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-form input,
-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-form input:focus,
-form textarea:focus {
-    border-color: #ff7e5f;
-    box-shadow: 0 0 10px rgba(255, 126, 95, 0.3);
-}
-
-form button {
-    padding: 12px 24px;
-    background: #ff7e5f;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-form button:hover {
-    background: #feb47b;
-    transform: scale(1.05);
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-footer {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: 20px;
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
 }
 
-/* Анимации */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.card-content {
+    padding: 1.5rem;
 }
 
-/* Адаптивность для мобильных устройств */
+.btn {
+    padding: 1rem 2rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #555;
+}
+
+.filter-section {
+    padding: 2rem;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.filter-item {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.calculator {
+    padding: 4rem 2rem;
+    background: #f5f5f5;
+}
+
+.calculator-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.review-section {
+    padding: 2rem;
+    background: white;
+}
+
+.review-form {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+}
+
+.reviews-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.review-item {
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
 @media (max-width: 768px) {
-    header {
-        padding: 0px 0;
+    .nav-links {
+        display: none;
     }
-
-    .logo {
-        font-size: 24px;
+    
+    .hero h1 {
+        font-size: 1.5rem;
     }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
+    
+    .filter-item {
+        width: 100%;
+        text-align: center;
     }
-
-    #hero {
-        height: 400px;
-    }
-
-    #hero h1 {
-        font-size: 36px;
-    }
-
-    #hero p {
-        font-size: 16px;
-    }
-}
-
-/* Адаптивность для очень маленьких экранов */
-@media (max-width: 480px) {
-    .logo {
-        font-size: 20px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    #hero {
-        height: 300px;
-    }
-
-    #hero h1 {
-        font-size: 24px;
-    }
-
-    #hero p {
-        font-size: 14px;
+    
+    .calculator-form input,
+    .calculator-form select {
+        width: 100%;
     }
 }

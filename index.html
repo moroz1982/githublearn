@@ -3,104 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Онлайн каталог корпусной мебели по индивидуальному проекту">
-    <meta name="keywords" content="корпусная мебель, индивидуальный проект, шкафы, кухни, прихожие">
-    <meta name="author" content="Ваше имя или название компании">
-    <title>Корпусная мебель по индивидуальному проекту</title>
-    <link href="https://fonts.google.com/specimen/Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>DesignCraft - Мебель на заказ от фабрики Оптимум</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- Шапка сайта -->
-    <header>
-        <div class="container">
-            <a href="#" class="logo">Мебельная фабрика Оптимум</a>
-            <nav>
-                <ul>
-                    <li><a href="#catalog">Каталог</a></li>
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#reviews">Отзывы</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                </ul>
-            </nav>
-            <div class="phone-number">
-                <p>+7 (999) 123-45-67</p>
-            </div>
+    <nav class="navbar">
+        <a href="#" class="logo">DesignCraft</a>
+        <div class="nav-links">
+            <a href="#categories">Категории</a>
+            <a href="#projects">Проекты</a>
+            <a href="#contacts">Контакты</a>
         </div>
-    </header>
+    </nav>
 
-    <!-- Главный баннер -->
-    <section id="hero">
-        <div class="container">
-            <h1>Создаем идеальную мебель для вашего дома</h1>
-            <p>Индивидуальные решения для каждой комнаты</p>
-            <a href="#catalog" class="btn">Посмотреть каталог</a>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Эксклюзивная корпусная мебель</h1>
+            <p>Реализуем ваши идеи в жизнь</p>
+            <button class="btn">Заказать проект</button>
         </div>
     </section>
 
-    <!-- Каталог -->
-    <section id="catalog">
-        <div class="container">
-            <h2>Наши категории</h2>
-            <div class="categories" id="category-list"></div>
-            <a href="#" class="btn">Смотреть все категории</a>
-        </div>
+    <section class="filter-section">
+        <select id="sortSelect" class="filter-item">
+            <option value="price">Сортировать по цене</option>
+            <option value="popularity">Сортировать по популярности</option>
+        </select>
+        <div id="categoryFilters" class="filter-item"></div>
     </section>
 
-    <!-- Отзывы -->
-    <section id="reviews">
-        <div class="container">
-            <h2>Отзывы наших клиентов</h2>
-            <div class="review-items" id="review-list"></div>
-        </div>
+    <section id="categories" class="categories">
+        <h2>Популярные категории</h2>
+        <div class="categories-grid" id="categoriesContainer"></div>
     </section>
 
-    <!-- Подключение скрипта -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const categories = [
-                { img: "images/kitchen.jpg", title: "Кухни", desc: "Современные кухонные гарнитуры с функциональными решениями." },
-                { img: "images/wardrobe.jpg", title: "Шкафы", desc: "Просторные шкафы-купе и системы хранения для любой площади." },
-                { img: "images/bedroom.jpg", title: "Спальни", desc: "Уютные спальни, созданные с учетом ваших предпочтений." },
-                { img: "images/living-room.jpg", title: "Гостиные", desc: "Элегантные гостиные комплекты для вашего интерьера." },
-                { img: "images/office.jpg", title: "Офисная мебель", desc: "Профессиональная офисная мебель для повышения производительности." },
-                { img: "images/children.jpg", title: "Детская мебель", desc: "Безопасная и удобная мебель для растущих детей." }
-            ];
+    <section class="calculator">
+        <h2>Калькулятор стоимости</h2>
+        <form class="calculator-form">
+            <input type="number" id="width" placeholder="Ширина (см)" required>
+            <input type="number" id="height" placeholder="Высота (см)" required>
+            <select id="material">
+                <option value="1">ДСП - 1500 руб/м²</option>
+                <option value="2">МДФ - 2500 руб/м²</option>
+                <option value="3">Массив дерева - 4000 руб/м²</option>
+            </select>
+            <button type="button" class="btn" onclick="calculatePrice()">Рассчитать</button>
+            <div id="result"></div>
+        </form>
+    </section>
 
-            const reviews = [
-                { img: "images/avatar1.jpg", name: "Анна Иванова", text: "Заказывала кухню под заказ. Результат превзошел все ожидания! Качество материалов отличное, сборщики молодцы." },
-                { img: "images/avatar2.jpg", name: "Игорь Петров", text: "Недавно установили шкаф-купе в прихожую. Все сделано аккуратно, размеры идеально подошли, выглядит красиво." },
-                { img: "images/avatar3.jpg", name: "Мария Сидорова", text: "Обращались за детской мебелью. Очень довольны результатом, все безопасно и удобно для ребенка." }
-            ];
+    <section class="projects">
+        <h2>Реализованные проекты</h2>
+        <div class="projects-grid" id="projectsContainer"></div>
+    </section>
 
-            const categoryList = document.getElementById("category-list");
-            const reviewList = document.getElementById("review-list");
+    <section class="review-section">
+        <h2>Отзывы</h2>
+        <form class="review-form" onsubmit="addReview(event)">
+            <input type="text" id="userName" placeholder="Ваше имя" required>
+            <textarea id="reviewText" placeholder="Ваш отзыв" required></textarea>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+        <div class="reviews-container" id="reviewsContainer"></div>
+    </section>
 
-            categories.forEach(category => {
-                const div = document.createElement("div");
-                div.classList.add("category-item");
-                div.innerHTML = `
-                    <img src="${category.img}" alt="${category.title}">
-                    <h3>${category.title}</h3>
-                    <p>${category.desc}</p>
-                `;
-                categoryList.appendChild(div);
-            });
-
-            reviews.forEach(review => {
-                const div = document.createElement("div");
-                div.classList.add("review-item");
-                div.innerHTML = `
-                    <img src="${review.img}" alt="Аватар клиента">
-                    <h3>${review.name}</h3>
-                    <p>${review.text}</p>
-                `;
-                reviewList.appendChild(div);
-            });
-        });
-    </script>
-
+    <script src="app.js"></script>
 </body>
 </html>
