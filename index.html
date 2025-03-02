@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesignCraft - Мебель на заказ от фабрики Оптимум</title>
+    <title>DesignCraft - Мебель на заказ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="#" class="logo">DesignCraft</a>
-        <div class="nav-links">
-            <a href="#categories">Категории</a>
-            <a href="#projects">Проекты</a>
-            <a href="#contacts">Контакты</a>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Мебельный Мастер</a>
+            <nav>
+                <ul>
+                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="phone-number">
+                <p>+7 (999) 123-45-67</p>
+            </div>
         </div>
-    </nav>
+    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Эксклюзивная корпусная мебель</h1>
-            <p>Реализуем ваши идеи в жизнь</p>
-            <button class="btn">Заказать проект</button>
+    <!-- Главный баннер -->
+    <section id="hero">
+        <div class="container">
+            <h1>Создаем идеальную мебель для вашего дома</h1>
+            <p>Индивидуальные решения для каждой комнаты</p>
+            <a href="#catalog" class="btn">Посмотреть каталог</a>
         </div>
     </section>
 
-    <section class="filter-section">
-        <select id="sortSelect" class="filter-item">
-            <option value="price">Сортировать по цене</option>
-            <option value="popularity">Сортировать по популярности</option>
-        </select>
-        <div id="categoryFilters" class="filter-item"></div>
-    </section>
-
-    <section id="categories" class="categories">
-        <h2>Популярные категории</h2>
-        <div class="categories-grid" id="categoriesContainer"></div>
-    </section>
-
+    <!-- Калькулятор стоимости -->
     <section class="calculator">
         <h2>Калькулятор стоимости</h2>
         <form class="calculator-form">
@@ -52,11 +52,23 @@
         </form>
     </section>
 
-    <section class="projects">
-        <h2>Реализованные проекты</h2>
-        <div class="projects-grid" id="projectsContainer"></div>
+    <!-- Каталог готовых проектов -->
+    <section class="projects-catalog">
+        <h2>Каталог готовых проектов</h2>
+        <div class="filter-section">
+            <select id="categoryFilter" class="filter-item">
+                <option value="all">Все категории</option>
+                <option value="kitchens">Кухни</option>
+                <option value="wardrobes">Шкафы</option>
+                <option value="bedrooms">Спальни</option>
+                <option value="living-rooms">Гостиные</option>
+                <option value="offices">Офисная мебель</option>
+            </select>
+        </div>
+        <div class="projects-grid" id="projectsCatalog"></div>
     </section>
 
+    <!-- Отзывы -->
     <section class="review-section">
         <h2>Отзывы</h2>
         <form class="review-form" onsubmit="addReview(event)">
@@ -67,6 +79,89 @@
         <div class="reviews-container" id="reviewsContainer"></div>
     </section>
 
-    <script src="app.js"></script>
+    <script>
+        // Данные для каталога готовых проектов
+        const projectsCatalog = [
+            {id: 1, title: "Модульная кухня", category: "kitchens", price: 120000, image: "image1.jpg", description: "Современная модульная кухня с большим количеством ящиков."},
+            {id: 2, title: "Шкаф-купе 'Элегант'", category: "wardrobes", price: 85000, image: "image2.jpg", description: "Просторный шкаф-купе с зеркальными дверями."},
+            {id: 3, title: "Спальная зона 'Уют'", category: "bedrooms", price: 95000, image: "image3.jpg", description: "Комплект мебели для спальни в классическом стиле."},
+            {id: 4, title: "Гостиная 'Модерн'", category: "living-rooms", price: 150000, image: "image4.jpg", description: "Элегантная гостиная с soft мебелью и тумбой под ТВ."},
+            {id: 5, title: "Рабочий стол 'Профи'", category: "offices", price: 60000, image: "image5.jpg", description: "Функциональный рабочий стол с системой хранения."}
+        ];
+
+        // Функция для рендера каталога
+        function renderProjectsCatalog(filteredProjects) {
+            const container = document.getElementById('projectsCatalog');
+            container.innerHTML = filteredProjects.map(project => `
+                <div class="project-card">
+                    <div class="card-image" style="background-image: url('${project.image}')"></div>
+                    <div class="card-content">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <p><strong>Цена:</strong> ${project.price} руб</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Функция для фильтрации проектов
+        function filterProjectsCatalog() {
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            let filtered = projectsCatalog;
+
+            if (selectedCategory !== 'all') {
+                filtered = projectsCatalog.filter(project => project.category === selectedCategory);
+            }
+
+            renderProjectsCatalog(filtered);
+        }
+
+        // Инициализация каталога при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjectsCatalog(projectsCatalog);
+            document.getElementById('categoryFilter').addEventListener('change', filterProjectsCatalog);
+        });
+
+        // Калькулятор
+        function calculatePrice() {
+            const width = document.getElementById('width').value / 100;
+            const height = document.getElementById('height').value / 100;
+            const materialPrice = [0, 1500, 2500, 4000][document.getElementById('material').value];
+            const total = Math.round(width * height * materialPrice * 1.2); // Коэффициент сложности
+            document.getElementById('result').innerHTML = `<h3>Примерная стоимость: ${total} руб</h3>`;
+        }
+
+        // Отзывы
+        let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+        function addReview(e) {
+            e.preventDefault();
+            const newReview = {
+                name: document.getElementById('userName').value,
+                text: document.getElementById('reviewText').value,
+                date: new Date().toLocaleDateString()
+            };
+            reviews.push(newReview);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            renderReviews();
+            e.target.reset();
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = reviews.map(review => `
+                <div class="review-item">
+                    <h4>${review.name}</h4>
+                    <p>${review.text}</p>
+                    <small>${review.date}</small>
+                </div>
+            `).join('');
+        }
+
+        // Инициализация отзывов
+        document.addEventListener('DOMContentLoaded', () => {
+            renderReviews();
+        });
+    </script>
 </body>
 </html>
